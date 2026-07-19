@@ -44,6 +44,81 @@ try {
 
 ---
 
+## Running with XAMPP (Beginner Guide)
+
+If you've never used PHP before, follow these steps. Takes about 5 minutes.
+
+### Step 1 — Install XAMPP
+
+1. Go to [apachefriends.org](https://www.apachefriends.org)
+2. Download XAMPP for your OS (Windows / Mac / Linux)
+3. Install it with default settings
+4. Open XAMPP Control Panel and click **Start** next to Apache
+
+### Step 2 — Download this project
+
+1. Click the green **Code** button on this repo
+2. Click **Download ZIP**
+3. Extract the ZIP
+4. Copy the folder into your XAMPP `htdocs` folder:
+   - **Windows:** `C:\xampp\htdocs\`
+   - **Mac:** `/Applications/XAMPP/htdocs/`
+   - **Linux:** `/opt/lampp/htdocs/`
+
+So you should have something like:
+```
+C:\xampp\htdocs\send-sms-api-php\
+├── send-sms.php
+├── smsAPI.php
+├── .env.example
+└── ...
+```
+
+### Step 3 — Set your API key
+
+1. Inside the project folder, find `.env.example`
+2. Rename it to `.env`
+3. Open `.env` in any text editor (Notepad is fine)
+4. Replace `your_api_key_here` with your real SendAfrica API key
+
+It should look like this:
+```
+SMS_API_KEY=SA-3fc30858b1d9a91794baf6a8385a4c9d...
+SMS_API_URL=https://api.sendafrica.online/v1/sms/
+```
+
+### Step 4 — Open in browser
+
+1. Make sure Apache is running in XAMPP Control Panel (green "Running" label)
+2. Open your browser and go to:
+
+```
+http://localhost/send-sms-api-php/send-sms.php
+```
+
+Replace `send-sms-api-php` with whatever you named the folder.
+
+That's it. You should see the SMS Sender form.
+
+### Step 5 — Send a test SMS
+
+1. Enter a phone number (Tanzania: `0712345678` or `+255712345678`)
+2. Type a message
+3. Click **Send**
+4. You'll see a toast notification with success or error
+
+### Troubleshooting
+
+| Problem | Fix |
+|---------|-----|
+| `This page isn't working` (HTTP 500) | Apache isn't running — click Start in XAMPP |
+| `404 Not Found` | Wrong URL — check the folder name matches |
+| `SMS_API_KEY not set` | You didn't rename `.env.example` to `.env`, or forgot to add your key |
+| `cURL Error` | cURL extension not enabled — open `php.ini`, uncomment `extension=curl`, restart Apache |
+| Form works but `API Error: unauthorized` | Your API key is wrong or expired — get a new one from the dashboard |
+
+---
+
 ## Alternative: Using Africa's Talking Directly
 
 This toolkit uses **SendAfrica** under the hood, which wraps [Africa's Talking](https://africastalking.com) — the underlying SMS gateway for Tanzania. You can also use Africa's Talking directly if you prefer.
