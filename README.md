@@ -143,13 +143,6 @@ try {
 | `SMS_API_KEY` | Yes | Your SendAfrica API key |
 | `SMS_API_URL` | No | API endpoint (defaults to `https://api.sendafrica.online/v1/sms/`) |
 
-## API Providers
-
-This toolkit uses **SendAfrica** which wraps [Africa's Talking](https://africastalking.com) — the underlying SMS gateway for Tanzania. See [`developer.md`](developer.md) for:
-
-- SendAfrica API reference (recommended — simpler setup)
-- Direct Africa's Talking integration (alternative)
-
 ## License
 
 MIT
