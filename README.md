@@ -4,6 +4,18 @@ A clean, lightweight PHP toolkit for sending SMS messages via the [SendAfrica AP
 
 ![SMS Sender UI](screenshots/image.png)
 
+### Multi-Recipient Support
+
+Send the same message to multiple numbers at once. Add as many recipients as you need, each with its own live status indicator.
+
+![Multiple Recipients](screenshots/image2.png)
+
+### Delivered Message
+
+See the SMS arrive on the recipient's phone — what they receive looks like this:
+
+![Delivered SMS](screenshots/message.png)
+
 ## Features
 
 - Send SMS to single or multiple recipients at once
