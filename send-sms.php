@@ -1,12 +1,5 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
-
-use Dotenv\Dotenv;
-
-if (file_exists(__DIR__ . '/.env')) {
-    $dotenv = Dotenv::createImmutable(__DIR__);
-    $dotenv->load();
-}
+require_once __DIR__ . '/smsAPI.php';
 
 $apiKey = $_ENV['SMS_API_KEY'] ?? null;
 $apiUrl = $_ENV['SMS_API_URL'] ?? 'https://api.sendafrica.online/v1/sms/';

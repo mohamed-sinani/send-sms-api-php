@@ -19,13 +19,7 @@ A lightweight PHP toolkit for sending SMS messages via the [SendAfrica API](http
 
 The key is shown **only once**. Store it in your `.env` immediately.
 
-### 2. Install dependencies
-
-```bash
-composer require vlucas/phpdotenv
-```
-
-### 3. Set environment variables
+### 2. Set environment variables
 
 Copy `.env.example` to `.env` and fill in your key:
 
@@ -34,15 +28,11 @@ SMS_API_KEY=SA-your-key-here
 SMS_API_URL=https://api.sendafrica.online/v1/sms/
 ```
 
-### 4. Send an SMS
+### 3. Send an SMS
 
 ```php
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/smsAPI.php';
-
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
 
 try {
     $result = sendSMS('0712345678', 'Hello from PHP!');

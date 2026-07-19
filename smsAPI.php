@@ -1,23 +1,37 @@
 <?php
 /**
- * SMS Helper Library
+ * SMS Helper Library (zero dependencies)
  *
  * Usage:
  *   require_once __DIR__ . '/smsAPI.php';
  *   $result = sendSMS('0712345678', 'Your OTP is 123456.');
  *   echo $result['message_id'];
  *
- * Set your API key in an environment variable `SMS_API_KEY`
- * and optionally `SMS_API_URL` (defaults to https://api.sendafrica.online/v1/sms/).
+ * Set your API key in .env file as SMS_API_KEY=your-key
  */
 
+function loadEnv(string $path) {
+    if (!file_exists($path)) return;
+    foreach (file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        if (strpos(trim($line), '#') === 0) continue;
+        if (strpos($line, '=') === false) continue;
+        list($key, $val) = explode('=', $line, 2);
+        $key = trim($key);
+        $val = trim($val, " \t\n\r\0\x0B\"'");
+        if (!array_key_exists($key, $_ENV)) $_ENV[$key] = $val;
+        putenv("$key=$val");
+    }
+}
+
+loadEnv(__DIR__ . '/.env');
+
 function sendSMS(string $to, string $message, string $from = null): array {
-    $apiKey = getenv('SMS_API_KEY');
+    $apiKey = getenv('SMS_API_KEY') ?: ($_ENV['SMS_API_KEY'] ?? null);
     if (!$apiKey) {
-        throw new RuntimeException('Environment variable SMS_API_KEY not set');
+        throw new RuntimeException('SMS_API_KEY not set. Add it to your .env file.');
     }
 
-    $apiUrl = getenv('SMS_API_URL') ?: 'https://api.sendafrica.online/v1/sms/';
+    $apiUrl = getenv('SMS_API_URL') ?: ($_ENV['SMS_API_URL'] ?? 'https://api.sendafrica.online/v1/sms/');
 
     $payload = ['to' => $to, 'message' => $message];
     if ($from !== null) {

@@ -24,13 +24,7 @@ git clone https://github.com/mohamed-sinani/send-sms-api-php.git
 cd send-sms-api-php
 ```
 
-### 2. Install dependencies
-
-```bash
-composer require vlucas/phpdotenv
-```
-
-### 3. Configure environment
+### 2. Configure environment
 
 ```bash
 cp .env.example .env
@@ -43,7 +37,7 @@ SMS_API_KEY=SA-your-key-here
 SMS_API_URL=https://api.sendafrica.online/v1/sms/
 ```
 
-### 4. Run
+### 3. Run
 
 Start your PHP server and open `send-sms.php` in your browser:
 
@@ -51,15 +45,13 @@ Start your PHP server and open `send-sms.php` in your browser:
 php -S localhost:8000
 ```
 
+No Composer. No frameworks. Just PHP + cURL.
+
 ## Usage as a Library
 
 ```php
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/smsAPI.php';
-
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
 
 try {
     $result = sendSMS('0712345678', 'Hello from PHP!');
